@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - "8084:80"
+    volumes:
+      - ./django/venti/nginx:/etc/nginx.conf.d
+      - ./django/app:/app
+      - ./django/venti/static:/static
+
+    depends_on:
+      - django_app
+#      - django_socket_server
+
+#  mysql:
+#    image: mariadb:latest
+#    container_name: mysql
+#    expose:
+#      - "3306"
+#    environment:
+#      MYSQL_DATABASE: venti1
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: 111111
+#      MYSQL_ROOT_PASSWORD: 111111
+#    volumes:
+#      - ../db/data:/var/lib/mysql
+#      - ../db/data/conf.d:/etc/mysql/conf.d
+
+  django_app:
+    container_name: django_app
+    build:
+      context: .
+      dockerfile: ./django/Dockerfile
+    command: gunicorn venti.wsgi:application --bind 0.0.0.0:8000
+      # settings.py 환경분리 되어있어 settings를 지정해야하는 경우 다음과 같이 추가 입력
+      # [--env DJANGO_SETTINGS_MODULE='<django_project>.settings.production']
+    expose:
+      - "8000"
+    depends_on:
+#      - mysql
+    links:
+      - mysql:mysql
+#    networks:
+#      - app-tier
+    restart: always
+    volumes:
+      - ./django/app:/app
+    env_file:
+      - ./django/env.dev
+
+
+networks:
+  app-tier:
+    driver: bridge

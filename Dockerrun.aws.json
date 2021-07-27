@@ -10,7 +10,7 @@
     },
     {
       "name": "nginx",
-      "image": "gimkuku/docker-nginx",
+      "image": "gimkuku/nginx",
       "hostname": "nginx",
       "essential": true,
       "portMappings": [

@@ -13,8 +13,6 @@ script:
 
 after_success:
   #각 이미지 빌드
-  -  docker-compose build
-  -
   - docker build -t gimkuku/nginx ./nginx
 #  - docker build -t gimkuku/django ./django
   - docker build -f ./django/Dockerfile . -t gimkuku/django

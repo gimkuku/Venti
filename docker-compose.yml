@@ -48,6 +48,3 @@ services:
       - ./django/env.dev
 
 
-networks:
-  app-tier:
-    driver: bridge

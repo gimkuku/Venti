@@ -13,8 +13,8 @@ script:
 
 after_success:
   #각 이미지 빌드
-  - docker build -t gimkuku/django_app ./nginx
-  - docker build -t gimkuku/nginx ./django
+  - docker build -t gimkuku/nginx ./nginx
+  - docker build -t gimkuku/django_app ./django_app
   #도커 허브 로그인
   #아이디는 travis CI 홈페이지에 미리 넣어준다.
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin

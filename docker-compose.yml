@@ -12,7 +12,7 @@ services:
       - ./django/venti/static:/static
 
     depends_on:
-      - django_app
+      - django
 #      - django_socket_server
 
 #  mysql:
@@ -29,8 +29,8 @@ services:
 #      - ../db/data:/var/lib/mysql
 #      - ../db/data/conf.d:/etc/mysql/conf.d
 
-  django_app:
-    container_name: django_app
+  django:
+    container_name: django
     build:
       context: .
       dockerfile: ./django/Dockerfile

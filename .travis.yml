@@ -9,15 +9,15 @@ before_install:
   - docker-compose build
 
 script:
-  - docker-compose run django_app python manage.py test
+  - docker-compose run django python manage.py test
 
 after_success:
   #각 이미지 빌드
   - docker build -t gimkuku/nginx ./nginx
-  - docker build -t gimkuku/django_app ./django_app
+  - docker build -t gimkuku/django ./django
   #도커 허브 로그인
   #아이디는 travis CI 홈페이지에 미리 넣어준다.
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
   #빌드된 이미지들을 도커 허브에 push
-  - docker push gimkuku/django_app
+  - docker push gimkuku/django
   - docker push gimkuku/nginx

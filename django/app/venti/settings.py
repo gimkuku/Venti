@@ -30,7 +30,7 @@ SECRET_KEY = 'w8f!v!wv3*poex8od!pyj+^&*zkk6%gn(!n#7o6ng9(r6r@vsb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'django_app']  # 외부에서 웹 어플리케이션에 접근
+ALLOWED_HOSTS = ['*', 'django']  # 외부에서 웹 어플리케이션에 접근
 
 # Application definition
 TEMPLATE_CONTEXT_PROCESSORS = (

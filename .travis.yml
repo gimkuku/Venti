@@ -24,6 +24,7 @@ after_success:
   - docker push gimkuku/nginx
 
 deploy:
+  skip_cleanup: true
   #외부 서비스 표시(s3, elesticbeanstalk, firebase 등등)
   provider: elasticbeanstalk
   #현재 사용하고 있는 AWS의 서비스가 위치하고있는 물리 장소

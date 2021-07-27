@@ -44,8 +44,6 @@ services:
     restart: always
     volumes:
       - ./django/app:/app
-    env_file:
-      - ./django/env.dev
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root

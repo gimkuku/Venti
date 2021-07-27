@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+{% if request.session.user %}
+<p>어서오세요 {{request.session.user}} 님</p>
+ <p>logout</p>
+
+<form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <p>logout</p>
+    <input type="submit" value="로그아웃">
+</form>
+{% else %}
+<p>로그인 하러가기</p>
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <p>username</p>
+    <input type="text" name="username">
+    <br>
+    <p>password</p>
+    <input type="text" name="password">
+    <br>
+    <input type="submit" value="로그인">
+</form>
+{% endif %}
+
+<h2>브랜드 목록</h2>
+{% if brands %}
+{% for b in brands %}
+    <div style = "width: 50%; height: auto">
+        <p>{{b.name}}</p>
+        <img src = "{{b.image}}">
+        <p>{{b.text}}</p>
+    </div>
+    <form method="POST" action="api/mybrands/">
+        {% csrf_token %}
+        <p>구독하기</p>
+        <input name = "user" value = "{{ request.session.user}}">
+        <input name = "brand" value = "{{b.id}}">
+        <input type="submit" value="brand구독">
+    </form>
+{% endfor %}
+{% else %}
+   <p>브랜드 없..</p>
+{% endif %}
+
+<h2>이벤트 목록</h2>
+{% if events %}
+{% for e in events %}
+    <div style = "width: 50%; height: auto">
+        <p>{{e.name}}</p>
+        <img src = "{{e.image}}">
+        <p>{{e.text}}</p>
+    </div>
+    <form method="POST" action="api/myevents/">
+        {% csrf_token %}
+        <p>구독하기</p>
+        <input name = "user" value = "{{ request.session.user}}">
+        <input name = "event" value = "{{e.id}}">
+        <input type="submit" value="event구독">
+    </form>
+{% endfor %}
+{% else %}
+   <p>이벤트 없..</p>
+{% endif %}
+</body>
+</html>
+

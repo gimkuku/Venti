@@ -46,5 +46,12 @@ services:
       - ./django/app:/app
     env_file:
       - ./django/env.dev
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: ceos979900
+      MYSQL_DATABASE: ventidb
+      MYSQL_PORT: 3306
+
 
 

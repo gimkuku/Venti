@@ -39,8 +39,6 @@ services:
       # [--env DJANGO_SETTINGS_MODULE='<django_project>.settings.production']
     expose:
       - "8000"
-    depends_on:
-#      - mysql
     links:
       - mysql:mysql
 #    networks:

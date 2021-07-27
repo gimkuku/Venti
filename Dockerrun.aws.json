@@ -1,0 +1,26 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "django",
+      "image": "gimkuku/django",
+      "hostname": "django",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "gimkuku/docker-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+          {
+              "hostPort": 80,
+              "containerPort": 80
+          }
+      ],
+      "links":["django"],
+      "memory": 128
+    }
+  ]
+}

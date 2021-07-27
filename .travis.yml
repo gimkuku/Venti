@@ -7,7 +7,6 @@ services:
 
 before_install:
   - docker-compose build
-  - pip install -r requirements.txt
 
 script:
   - docker-compose run django_app python manage.py test
